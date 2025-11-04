@@ -34,7 +34,7 @@ public class AccountController {
 		this.repository = repository;
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping(value = "/{id}", version = "1.0.0")
 	Account getAccount(@PathVariable String id) {
 		return repository.getAccount(id);
 	}

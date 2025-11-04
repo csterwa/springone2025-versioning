@@ -6,8 +6,5 @@ target
 /.idea/
 bin
 .gradle
-gradle/
-gradlew
-gradlew.bat
 build/
 demo.txt

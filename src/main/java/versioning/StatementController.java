@@ -16,15 +16,12 @@
 
 package versioning;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.*;
 import versioning.repository.Statement;
 import versioning.repository.StatementRepository;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/accounts/{id}/statements")
@@ -42,8 +39,9 @@ public class StatementController {
 	}
 
 	@GetMapping(version = "1.2")
-	List<Statement> getStatements1_2(@PathVariable String id) {
-		return repository.getStatementsForAccount(id);
+	List<Statement> getStatements1_2(@PathVariable String id, @RequestParam(required = false) Statement.Type type) {
+
+		return repository.getStatementsForAccountAndType(id, type);
 	}
 
 }

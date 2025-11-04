@@ -16,7 +16,9 @@
 
 package versioning.repository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.util.LinkedMultiValueMap;
@@ -39,4 +41,15 @@ public class StatementRepository {
 		return list;
 	}
 
+	public List<Statement> getStatementsForAccountAndType(String id, Statement.Type type) {
+		List<Statement> statements = statementsByAccount.get(id);
+		if (statements == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		List<Statement> filteredStatements = statements.stream().filter(statement ->
+				statement.type() == type
+		).collect(Collectors.toUnmodifiableList());
+
+		return filteredStatements;
+	}
 }

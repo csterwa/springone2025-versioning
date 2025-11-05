@@ -15,6 +15,7 @@ API Developer wants to auto-generate multiple versions of their OpenAPI specific
 
 #### Acceptance Criteria
 
+```
 GIVEN Version Server sample application
 WHEN springdoc-openapi is executed to generate OpenAPI specification(s)
 THEN three OpenAPI specifications will be generated for the following versions defined in the application:
@@ -23,6 +24,7 @@ THEN three OpenAPI specifications will be generated for the following versions d
 * 1.2.0
 AND `/accounts/{id}/statements` API endpoint specification for version 1.2.0 will include query param for `type`
 AND `/accounts/{id}/statements` API endpoint specification in versions 1.0.0 and 1.1.0 will NOT have a query param
+```
 
 ### Ensure API version request strategy is exposed
 
@@ -30,6 +32,7 @@ API Consumer wants to view which API version request strategy (i.e. Path, Header
 
 #### Acceptance Criteria
 
+```
 GIVEN Version Server sample application
 WHEN springdoc-openapi is executed to generate OpenAPI specification(s)
 
@@ -39,16 +42,19 @@ THEN generated OpenAPI specification shows that specific versions of all API end
 AND application properties include `spring.mvc.apiversion.use.path-segment=1`
 AND AccountController and StatementController endpoints are defined with `/api/{version}/...` path prefix
 THEN generated OpenAPI specification shows that specific versions of all API endpoints are accessible using path `/api/{version}/**`
+```
 
 ### Unsupported versions are shown as deprecated
 
 API Consumer wants to view which API routes are deprecated on a specific API version so that they can change to new API calls
 
+```
 GIVEN Version Server sample application
 WHEN springdoc-openapi is executed to generate OpenAPI specification(s)
 AND application properties includes `spring.mvc.apiversion.supported=1.1.0,1.2.0`
 THEN generated OpenAPI specification for version 1.0.0 will show as deprecated
 AND generated OpenAPI specifications for versions 1.1.0 and 1.2.0 will NOT show any deprecation message
+```
 
 ## Learn More 
 
